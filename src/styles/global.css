@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { scroll-behavior: smooth; }
+
+  body {
+    background-color: #0A0A0B;
+    color: #E8E6E1;
+    cursor: none;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0A0A0B; }
+  ::-webkit-scrollbar-thumb { background: #C8A96E; border-radius: 2px; }
+
+  @media (max-width: 768px) {
+    body { cursor: auto; }
+  }
+
+  /* Work items: aspect-ratio on mobile instead of fixed pixel height */
+  @media (max-width: 767px) {
+    .work-item { height: auto !important; aspect-ratio: 16/9; }
+    .work-overlay { opacity: 1; background: linear-gradient(to top, rgba(10,10,11,0.85) 0%, transparent 70%); }
+  }
+
+  /* Prevent horizontal overflow from absolute decorative elements */
+  section { overflow-x: hidden; }
+}
+
+@layer components {
+  /* Cursor */
+  .cursor {
+    @apply fixed rounded-full pointer-events-none z-[9999] bg-gold;
+    width: 12px; height: 12px;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    @apply fixed rounded-full pointer-events-none z-[9998] border border-gold/50;
+    width: 40px; height: 40px;
+    transform: translate(-50%, -50%);
+    transition: all 0.12s ease;
+  }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #C8A96E 0%, #E2C98A 50%, #C8A96E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section line */
+  .section-line {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, #C8A96E, transparent);
+    display: inline-block;
+  }
+  .section-line-reverse {
+    width: 60px; height: 1px;
+    background: linear-gradient(270deg, #C8A96E, transparent);
+    display: inline-block;
+  }
+
+  /* Gold button */
+  .btn-gold {
+    background: linear-gradient(135deg, #C8A96E 0%, #E2C98A 50%, #C8A96E 100%);
+    background-size: 200% auto;
+    color: #0A0A0B;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    transition: all 0.4s ease;
+  }
+  .btn-gold:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200,169,110,0.3);
+  }
+
+  /* Service card */
+  .service-card {
+    border: 1px solid rgba(200,169,110,0.12);
+    background: linear-gradient(135deg, rgba(26,26,30,0.8) 0%, rgba(17,17,19,0.9) 100%);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,169,110,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .service-card:hover { transform: translateY(-8px); border-color: rgba(200,169,110,0.35); }
+  .service-card:hover::before { opacity: 1; }
+
+  /* Work item */
+  .work-item {
+    position: relative;
+    overflow: hidden;
+    background: #1A1A1E;
+  }
+  .work-item img {
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .work-item:hover img { transform: scale(1.08); }
+  .work-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,11,0.9) 0%, rgba(10,10,11,0.2) 60%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex; align-items: flex-end; padding: 2rem;
+  }
+  .work-item:hover .work-overlay { opacity: 1; }
+
+  /* Testimonial card */
+  .testimonial-card {
+    background: linear-gradient(135deg, rgba(26,26,30,0.6) 0%, rgba(17,17,19,0.8) 100%);
+    border: 1px solid rgba(200,169,110,0.1);
+    transition: border-color 0.3s ease;
+  }
+  .testimonial-card:hover { border-color: rgba(200,169,110,0.3); }
+
+  /* Form input */
+  .form-input {
+    background: rgba(26,26,30,0.8);
+    border: 1px solid rgba(200,169,110,0.2);
+    color: #E8E6E1;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  .form-input:focus {
+    border-color: rgba(200,169,110,0.7);
+    box-shadow: 0 0 0 3px rgba(200,169,110,0.1);
+    background: rgba(26,26,30,1);
+  }
+  .form-input::placeholder { color: rgba(155,152,144,0.6); }
+
+  /* Stat number */
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 1;
+    background: linear-gradient(135deg, #C8A96E 0%, #E2C98A 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 2rem; right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+}

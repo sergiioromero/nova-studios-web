@@ -1,0 +1,92 @@
+---
+---
+
+<section class="relative min-h-screen flex items-center overflow-hidden" id="inicio">
+
+  <!-- Background orbs -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl animate-float"
+      style="background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%);"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-3xl"
+      style="background: radial-gradient(circle, rgba(200,169,110,0.05) 0%, transparent 70%); animation: float 10s ease-in-out infinite reverse;"></div>
+  </div>
+
+  <!-- Grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03]"
+    style="background-image: linear-gradient(rgba(200,169,110,1) 1px, transparent 1px), linear-gradient(90deg, rgba(200,169,110,1) 1px, transparent 1px); background-size: 80px 80px;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 w-full pt-32 pb-20 relative">
+    <div class="relative max-w-4xl">
+
+      <!-- Tag -->
+      <div class="flex items-center gap-4 mb-8 reveal">
+        <span class="section-line"></span>
+        <span class="text-gold text-xs tracking-[0.3em] uppercase font-sans">Agencia de Diseño Digital</span>
+      </div>
+
+      <!-- Heading -->
+      <h1 class="font-serif font-light text-mist leading-[0.9] mb-8 reveal reveal-delay-1"
+        style="font-size: clamp(52px, 8vw, 110px);">
+        Creamos<br />
+        <em class="text-gold-gradient not-italic">experiencias</em><br />
+        que perduran
+      </h1>
+
+      <!-- Subheading -->
+      <p class="text-fog text-lg md:text-xl font-light max-w-lg leading-relaxed mb-12 reveal reveal-delay-2">
+        Diseño estratégico, identidad de marca y soluciones digitales para empresas que quieren dejar huella en el mundo.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 reveal reveal-delay-3">
+        <a href="#trabajos" class="btn-gold px-8 py-4 text-sm tracking-[0.15em] uppercase font-medium rounded-sm text-center">
+          Ver nuestro trabajo
+        </a>
+        <a href="#proceso" class="border border-gold/30 hover:border-gold/70 text-mist px-8 py-4 text-sm tracking-[0.15em] uppercase font-medium rounded-sm transition-all duration-300 text-center hover:bg-gold/5">
+          Cómo trabajamos
+        </a>
+      </div>
+
+      <!-- Stats — responsive grid en móvil -->
+      <div class="flex gap-6 md:gap-12 mt-14 md:mt-20 reveal reveal-delay-4">
+        <div>
+          <div class="stat-number" style="font-size: clamp(30px, 5vw, 80px);">12+</div>
+          <div class="text-fog text-[10px] md:text-xs tracking-widest uppercase mt-1 leading-tight">Años<br class="sm:hidden" /> exp.</div>
+        </div>
+        <div class="w-px self-stretch bg-gold/20"></div>
+        <div>
+          <div class="stat-number" style="font-size: clamp(30px, 5vw, 80px);">240</div>
+          <div class="text-fog text-[10px] md:text-xs tracking-widest uppercase mt-1">Proyectos</div>
+        </div>
+        <div class="w-px self-stretch bg-gold/20"></div>
+        <div>
+          <div class="stat-number" style="font-size: clamp(30px, 5vw, 80px);">98%</div>
+          <div class="text-fog text-[10px] md:text-xs tracking-widest uppercase mt-1">Satisfacción</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decorative letter — oculta en móvil pequeño para evitar overflow -->
+    <div class="hidden sm:block select-none pointer-events-none absolute right-[-2vw] top-1/2"
+      style="font-family: 'Cormorant Garamond', serif; font-size: clamp(100px, 18vw, 260px); font-weight: 300; line-height: 0.85; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1px rgba(200,169,110,0.10); transform: translateY(-50%);"
+      id="hero-letter">N</div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal">
+    <span class="text-fog text-xs tracking-[0.3em] uppercase">Scroll</span>
+    <div class="w-px h-12 bg-gradient-to-b from-gold/50 to-transparent animate-pulse"></div>
+  </div>
+</section>
+
+<script>
+  window.addEventListener('scroll', () => {
+    const letter = document.getElementById('hero-letter');
+    if (!letter) return;
+    const scrolled = window.pageYOffset;
+    const heroHeight = window.innerHeight;
+    if (scrolled < heroHeight) {
+      letter.style.transform = `translateY(calc(-50% + ${scrolled * 0.3}px))`;
+    }
+  });
+</script>

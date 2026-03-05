@@ -1,0 +1,304 @@
+---
+const services = [
+  {
+    id: 'branding',
+    number: '01',
+    title: 'Identidad de Marca',
+    description: 'Construimos identidades visuales únicas que comunican quiénes eres y por qué importas. Logotipos, paletas, tipografías y sistemas de diseño completos.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>`,
+    detail: {
+      what: 'Creamos sistemas de identidad visual completos: desde el logotipo hasta la guía de marca que tu equipo usará cada día.',
+      includes: ['Logotipo principal + variantes', 'Paleta de color y tipografía', 'Guía de marca (brand book)', 'Aplicaciones: tarjetas, papelería, redes sociales', 'Activos digitales y plantillas'],
+      deliverable: 'Entrega en 3–6 semanas. Incluye 3 rondas de revisión.',
+      price: 'Desde 2.400 €',
+    },
+  },
+  {
+    id: 'web',
+    number: '02',
+    title: 'Diseño Web & UX',
+    description: 'Interfaces digitales que convierten visitantes en clientes. Diseñamos experiencias intuitivas, hermosas y optimizadas para resultados.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2"/>`,
+    detail: {
+      what: 'Diseñamos y desarrollamos webs que combinan estética y rendimiento. Cada decisión está orientada a que el visitante realice una acción.',
+      includes: ['Diseño UI/UX completo en Figma', 'Desarrollo con Astro + Tailwind', 'Optimización SEO técnica', 'Responsive para todos los dispositivos', 'Formularios de contacto funcionales'],
+      deliverable: 'Entrega en 4–8 semanas. Incluye formación básica.',
+      price: 'Desde 3.800 €',
+    },
+  },
+  {
+    id: 'estrategia',
+    number: '03',
+    title: 'Estrategia Digital',
+    description: 'Desarrollamos estrategias de contenido, posicionamiento y comunicación digital alineadas con tus objetivos de negocio.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>`,
+    detail: {
+      what: 'Analizamos tu posición en el mercado y diseñamos una hoja de ruta clara para que tu marca crezca de manera consistente y medible.',
+      includes: ['Auditoría de marca y competencia', 'Definición de público objetivo', 'Estrategia de contenido y canales', 'Plan editorial 3 meses', 'KPIs y métricas de seguimiento'],
+      deliverable: 'Informe estratégico en 2 semanas. Sesión de presentación incluida.',
+      price: 'Desde 1.200 €',
+    },
+  },
+  {
+    id: 'motion',
+    number: '04',
+    title: 'Motion & Video',
+    description: 'Animaciones, motion graphics y producción audiovisual que dan vida a tu marca y capturan la atención de tu audiencia.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.36a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>`,
+    detail: {
+      what: 'Producimos contenido audiovisual que conecta emocionalmente con tu audiencia — desde piezas para redes hasta vídeos corporativos de alto impacto.',
+      includes: ['Motion graphics y animaciones de logo', 'Vídeo corporativo o de producto', 'Reels y contenido para redes sociales', 'Vídeo explainer animado', 'Edición y postproducción'],
+      deliverable: 'Tiempo variable según proyecto. Revisiones incluidas.',
+      price: 'Desde 900 € / pieza',
+    },
+  },
+  {
+    id: 'foto',
+    number: '05',
+    title: 'Fotografía Editorial',
+    description: 'Fotografía de producto, corporativa y editorial que eleva la percepción de tu marca y conecta emocionalmente con tu público.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/>`,
+    detail: {
+      what: 'Sesiones fotográficas pensadas para comunicar. No es solo hacer fotos bonitas — es crear un banco visual coherente con tu identidad de marca.',
+      includes: ['Sesión fotográfica (medio o día completo)', 'Dirección de arte y styling', 'Edición y retoque profesional', 'Entrega de 40–80 imágenes en alta resolución', 'Licencia de uso comercial completo'],
+      deliverable: 'Entrega de imágenes en 5 días hábiles.',
+      price: 'Desde 800 € / sesión',
+    },
+  },
+  {
+    id: 'integral',
+    number: '06',
+    title: 'Paquete Integral',
+    description: 'Todo lo que necesitas para lanzar o relanzar tu marca: identidad, web, estrategia y comunicación en un solo proyecto cohesionado.',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>`,
+    featured: true,
+    detail: {
+      what: 'El paquete completo para marcas que quieren hacerlo bien desde el primer día. Todos nuestros servicios core, coordinados como un único proyecto.',
+      includes: ['Identidad de marca completa', 'Diseño y desarrollo web', 'Estrategia de comunicación', 'Sesión fotográfica de marca', 'Pack de motion para redes sociales'],
+      deliverable: 'Proyecto completo en 10–14 semanas.',
+      price: 'Desde 7.500 € (ahorro del 25%)',
+    },
+  },
+];
+---
+
+<section id="servicios" class="py-20 md:py-32 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="flex items-start justify-between flex-col md:flex-row gap-8 mb-14 md:mb-20">
+      <div>
+        <div class="flex items-center gap-4 mb-5 reveal">
+          <span class="section-line"></span>
+          <span class="text-gold text-xs tracking-[0.3em] uppercase">Nuestros servicios</span>
+        </div>
+        <h2 class="font-serif font-light text-mist leading-tight reveal reveal-delay-1"
+          style="font-size: clamp(36px, 5vw, 64px);">
+          Lo que hacemos<br /><em class="text-gold-gradient not-italic">mejor</em>
+        </h2>
+      </div>
+      <p class="text-fog max-w-sm leading-relaxed self-end reveal reveal-delay-2">
+        Cada servicio está diseñado para crear un impacto real y medible en tu negocio, combinando creatividad con estrategia.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {services.map((service, i) => (
+        <div
+          class={`service-card p-6 md:p-8 rounded-sm reveal reveal-delay-${i % 3}`}
+          style={service.featured ? 'background: linear-gradient(135deg, rgba(200,169,110,0.12) 0%, rgba(26,26,30,0.9) 100%); border-color: rgba(200,169,110,0.3);' : ''}
+        >
+          {service.featured && (
+            <div class="absolute top-5 right-5 text-gold/40 font-serif text-xs tracking-widest">PREMIUM</div>
+          )}
+          <div class={`w-11 h-11 border border-gold/30 flex items-center justify-center mb-5 rotate-45 flex-shrink-0 ${service.featured ? 'bg-gold/10 border-gold/50' : ''}`}>
+            <svg class="w-4 h-4 text-gold -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" set:html={service.icon} />
+          </div>
+          <div class="text-gold/40 font-serif text-3xl font-light mb-3">{service.number}</div>
+          <h3 class="font-serif text-xl md:text-2xl text-mist font-light mb-3">{service.title}</h3>
+          <p class="text-fog text-sm leading-relaxed mb-6">{service.description}</p>
+          <button
+            class="service-more-btn text-gold text-xs tracking-[0.2em] uppercase hover:text-gold-light transition-colors flex items-center gap-2 group"
+            data-service={service.id}
+          >
+            {service.featured ? 'Ver detalles' : 'Saber más'}
+            <span class="transition-transform group-hover:translate-x-1">→</span>
+          </button>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Service Modal ── -->
+<div
+  id="service-modal"
+  class="fixed inset-0 z-[200] flex items-end md:items-center justify-center p-0 md:p-6 opacity-0 pointer-events-none transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+>
+  <!-- Backdrop -->
+  <div id="modal-backdrop" class="absolute inset-0 bg-obsidian/80 backdrop-blur-sm"></div>
+
+  <!-- Panel -->
+  <div
+    id="modal-panel"
+    class="relative w-full md:max-w-xl bg-charcoal border border-gold/20 rounded-t-2xl md:rounded-sm overflow-hidden translate-y-8 md:translate-y-0 md:scale-95 transition-all duration-300"
+    style="max-height: 90vh; overflow-y: auto;"
+  >
+    <!-- Close -->
+    <button
+      id="modal-close"
+      class="absolute top-5 right-5 w-8 h-8 border border-gold/20 hover:border-gold/50 flex items-center justify-center transition-colors z-10 text-fog hover:text-mist"
+      aria-label="Cerrar"
+    >✕</button>
+
+    <!-- Drag handle (mobile) -->
+    <div class="md:hidden flex justify-center pt-3 pb-1">
+      <div class="w-10 h-1 rounded-full bg-gold/20"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 md:p-10">
+      <div id="modal-number" class="text-gold/30 font-serif text-4xl font-light mb-2"></div>
+      <h3 id="modal-title" class="font-serif text-2xl md:text-3xl text-mist font-light mb-4"></h3>
+      <p id="modal-what" class="text-fog text-sm leading-relaxed mb-8 border-l-2 border-gold/30 pl-4"></p>
+
+      <div class="mb-6">
+        <div class="text-gold text-xs tracking-[0.25em] uppercase mb-3">Qué incluye</div>
+        <ul id="modal-includes" class="space-y-2"></ul>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between pt-6 border-t border-gold/10">
+        <div>
+          <div class="text-fog text-xs tracking-widest uppercase mb-1">Inversión</div>
+          <div id="modal-price" class="text-gold font-serif text-xl font-light"></div>
+        </div>
+        <div class="text-right">
+          <div class="text-fog text-xs tracking-widest uppercase mb-1">Entrega</div>
+          <div id="modal-deliverable" class="text-mist text-xs leading-relaxed max-w-[220px]"></div>
+        </div>
+      </div>
+
+      <a
+        href="#contacto"
+        id="modal-cta"
+        class="btn-gold w-full py-3.5 text-sm tracking-[0.15em] uppercase font-medium rounded-sm text-center block mt-6"
+      >
+        Solicitar este servicio
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Service data for modal
+  const serviceData: Record<string, { number: string; title: string; what: string; includes: string[]; deliverable: string; price: string }> = {
+    branding: {
+      number: '01', title: 'Identidad de Marca',
+      what: 'Creamos sistemas de identidad visual completos: desde el logotipo hasta la guía de marca que tu equipo usará cada día.',
+      includes: ['Logotipo principal + variantes', 'Paleta de color y tipografía', 'Guía de marca (brand book)', 'Aplicaciones: tarjetas, papelería, redes sociales', 'Activos digitales y plantillas'],
+      deliverable: 'Entrega en 3–6 semanas. Incluye 3 rondas de revisión.',
+      price: 'Desde 2.400 €',
+    },
+    web: {
+      number: '02', title: 'Diseño Web & UX',
+      what: 'Diseñamos y desarrollamos webs que combinan estética y rendimiento. Cada decisión está orientada a que el visitante realice una acción.',
+      includes: ['Diseño UI/UX completo en Figma', 'Desarrollo con Astro + Tailwind', 'Optimización SEO técnica', 'Responsive para todos los dispositivos', 'Formularios de contacto funcionales'],
+      deliverable: 'Entrega en 4–8 semanas. Incluye formación básica.',
+      price: 'Desde 3.800 €',
+    },
+    estrategia: {
+      number: '03', title: 'Estrategia Digital',
+      what: 'Analizamos tu posición en el mercado y diseñamos una hoja de ruta clara para que tu marca crezca de manera consistente y medible.',
+      includes: ['Auditoría de marca y competencia', 'Definición de público objetivo', 'Estrategia de contenido y canales', 'Plan editorial 3 meses', 'KPIs y métricas de seguimiento'],
+      deliverable: 'Informe estratégico en 2 semanas. Sesión de presentación incluida.',
+      price: 'Desde 1.200 €',
+    },
+    motion: {
+      number: '04', title: 'Motion & Video',
+      what: 'Producimos contenido audiovisual que conecta emocionalmente con tu audiencia — desde piezas para redes hasta vídeos corporativos de alto impacto.',
+      includes: ['Motion graphics y animaciones de logo', 'Vídeo corporativo o de producto', 'Reels y contenido para redes sociales', 'Vídeo explainer animado', 'Edición y postproducción'],
+      deliverable: 'Tiempo variable según proyecto. Revisiones incluidas.',
+      price: 'Desde 900 € / pieza',
+    },
+    foto: {
+      number: '05', title: 'Fotografía Editorial',
+      what: 'Sesiones fotográficas pensadas para comunicar. No es solo hacer fotos bonitas — es crear un banco visual coherente con tu identidad de marca.',
+      includes: ['Sesión fotográfica (medio o día completo)', 'Dirección de arte y styling', 'Edición y retoque profesional', 'Entrega de 40–80 imágenes en alta resolución', 'Licencia de uso comercial completo'],
+      deliverable: 'Entrega de imágenes en 5 días hábiles.',
+      price: 'Desde 800 € / sesión',
+    },
+    integral: {
+      number: '06', title: 'Paquete Integral',
+      what: 'El paquete completo para marcas que quieren hacerlo bien desde el primer día. Todos nuestros servicios core, coordinados como un único proyecto.',
+      includes: ['Identidad de marca completa', 'Diseño y desarrollo web', 'Estrategia de comunicación', 'Sesión fotográfica de marca', 'Pack de motion para redes sociales'],
+      deliverable: 'Proyecto completo en 10–14 semanas.',
+      price: 'Desde 7.500 € (ahorro del 25%)',
+    },
+  };
+
+  const modal = document.getElementById('service-modal')!;
+  const panel = document.getElementById('modal-panel')!;
+  const backdrop = document.getElementById('modal-backdrop')!;
+  const closeBtn = document.getElementById('modal-close')!;
+
+  function openModal(id: string) {
+    const data = serviceData[id];
+    if (!data) return;
+
+    // Fill content
+    document.getElementById('modal-number')!.textContent = data.number;
+    document.getElementById('modal-title')!.textContent = data.title;
+    document.getElementById('modal-what')!.textContent = data.what;
+    document.getElementById('modal-price')!.textContent = data.price;
+    document.getElementById('modal-deliverable')!.textContent = data.deliverable;
+
+    const list = document.getElementById('modal-includes')!;
+    list.innerHTML = data.includes.map(item => `
+      <li class="flex items-start gap-3 text-sm text-fog">
+        <span class="text-gold mt-0.5 flex-shrink-0">✦</span>
+        <span>${item}</span>
+      </li>
+    `).join('');
+
+    // Show
+    modal.classList.remove('pointer-events-none', 'opacity-0');
+    modal.classList.add('opacity-100');
+    panel.classList.remove('translate-y-8', 'md:scale-95');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.add('opacity-0');
+    panel.classList.add('translate-y-8', 'md:scale-95');
+    setTimeout(() => {
+      modal.classList.add('pointer-events-none');
+      document.body.style.overflow = '';
+    }, 300);
+  }
+
+  // Open on button click
+  document.querySelectorAll('.service-more-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = (btn as HTMLElement).dataset.service!;
+      openModal(id);
+    });
+  });
+
+  // Close on backdrop / button / Escape
+  backdrop.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // Close modal when CTA is clicked (scrolls to contact)
+  document.getElementById('modal-cta')?.addEventListener('click', closeModal);
+
+  // Touch drag to close on mobile
+  let startY = 0;
+  panel.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+  panel.addEventListener('touchend', (e) => {
+    const delta = e.changedTouches[0].clientY - startY;
+    if (delta > 80) closeModal();
+  }, { passive: true });
+</script>

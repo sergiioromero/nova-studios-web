@@ -1,0 +1,118 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'NOVA Studio — Agencia de Diseño & Estrategia Digital',
+  description = 'Diseño estratégico, identidad de marca y soluciones digitales para empresas que quieren dejar huella en el mundo.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  </head>
+  <body class="bg-obsidian text-mist font-sans antialiased">
+
+    <!-- Custom cursor -->
+    <div class="cursor hidden md:block" id="cursor"></div>
+    <div class="cursor-ring hidden md:block" id="cursor-ring"></div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <slot />
+
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById('cursor');
+      const cursorRing = document.getElementById('cursor-ring');
+      let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (cursor) { cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; }
+      });
+
+      function animateCursorRing() {
+        ringX += (mouseX - ringX) * 0.12;
+        ringY += (mouseY - ringY) * 0.12;
+        if (cursorRing) { cursorRing.style.left = ringX + 'px'; cursorRing.style.top = ringY + 'px'; }
+        requestAnimationFrame(animateCursorRing);
+      }
+      animateCursorRing();
+
+      // Hover state for cursor
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          if (cursor) { cursor.style.width = '20px'; cursor.style.height = '20px'; }
+          if (cursorRing) { cursorRing.style.width = '60px'; cursorRing.style.height = '60px'; cursorRing.style.opacity = '0.5'; }
+        });
+        el.addEventListener('mouseleave', () => {
+          if (cursor) { cursor.style.width = '12px'; cursor.style.height = '12px'; }
+          if (cursorRing) { cursorRing.style.width = '40px'; cursorRing.style.height = '40px'; cursorRing.style.opacity = '1'; }
+        });
+      });
+
+      // Scroll reveal
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // Counter animation
+      function animateCounter(el: HTMLElement, target: number, suffix = '') {
+        const duration = 2000;
+        const start = performance.now();
+        function update(time: number) {
+          const progress = Math.min((time - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      }
+
+      const statObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !(entry.target as HTMLElement).dataset.animated) {
+            (entry.target as HTMLElement).dataset.animated = 'true';
+            const text = entry.target.textContent?.trim() || '';
+            if (text === '∞') return;
+            const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+            const suffix = text.includes('%') ? '%' : text.includes('+') ? '+' : '';
+            if (!isNaN(num)) animateCounter(entry.target as HTMLElement, num, suffix);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = (this as HTMLAnchorElement).getAttribute('href');
+          const target = href ? document.querySelector(href) : null;
+          if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+      });
+    </script>
+  </body>
+</html>

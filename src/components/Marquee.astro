@@ -1,0 +1,19 @@
+---
+const items = [
+  'Branding', 'Diseño Web', 'Estrategia Digital', 'UI / UX',
+  'Motion Design', 'Identidad de Marca', 'Fotografía', 'Desarrollo Frontend',
+];
+---
+
+<div class="border-y border-gold/10 py-5 overflow-hidden bg-graphite/30">
+  <div class="flex">
+    <div class="flex gap-16 animate-marquee whitespace-nowrap">
+      {[...items, ...items].map((item, i) => (
+        <span class={`text-xs tracking-[0.4em] uppercase ${i % 2 === 0 ? 'text-gold/40' : 'text-fog/40'}`}>
+          {item}
+          <span class="text-gold mx-8">✦</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+---
+const testimonials = [
+  {
+    quote: 'NOVA transformó completamente la percepción de nuestra marca. Lo que antes era genérico, ahora es inconfundible. El impacto en ventas fue inmediato y sostenido.',
+    name: 'Elena Marchetti',
+    role: 'CEO, Lumina Architects',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=60&q=80&auto=format',
+    featured: false,
+  },
+  {
+    quote: 'Trabajar con NOVA fue una experiencia reveladora. Su proceso estratégico nos abrió los ojos a posibilidades que no habíamos considerado. El resultado superó todas nuestras expectativas.',
+    name: 'Carlos Rivas',
+    role: 'Fundador, Vela Commerce',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&q=80&auto=format',
+    featured: true,
+  },
+  {
+    quote: 'No solo crearon un diseño bonito — construyeron un sistema completo que nuestro equipo interno puede usar y escalar. Eso es diseño inteligente de verdad.',
+    name: 'Sara Klein',
+    role: 'Directora de Marketing, Axis Finance',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=60&q=80&auto=format',
+    featured: false,
+  },
+];
+---
+
+<section class="py-32 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-16">
+      <div class="flex items-center justify-center gap-4 mb-5 reveal">
+        <span class="section-line"></span>
+        <span class="text-gold text-xs tracking-[0.3em] uppercase">Testimonios</span>
+        <span class="section-line-reverse"></span>
+      </div>
+      <h2 class="font-serif font-light text-mist reveal reveal-delay-1"
+        style="font-size: clamp(32px, 4vw, 52px);">
+        Lo que dicen nuestros <em class="text-gold-gradient not-italic">clientes</em>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {testimonials.map((t, i) => (
+        <div
+          class={`testimonial-card p-8 rounded-sm reveal reveal-delay-${i}`}
+          style={t.featured ? 'border-color: rgba(200,169,110,0.25); background: linear-gradient(135deg, rgba(200,169,110,0.08) 0%, rgba(26,26,30,0.6) 100%);' : ''}
+        >
+          <div class="text-gold font-serif text-5xl leading-none mb-4">"</div>
+          <p class="text-mist/80 text-sm leading-relaxed mb-8 font-light">{t.quote}</p>
+          <div class="flex items-center gap-4">
+            <img src={t.avatar} alt={t.name} class="w-10 h-10 rounded-full object-cover border border-gold/20" loading="lazy" />
+            <div>
+              <div class="text-mist text-sm font-medium">{t.name}</div>
+              <div class="text-fog text-xs">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
